@@ -16,7 +16,7 @@ public class PersonService {
     private final PersonDAO personDao;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDao") PersonDAO personDao){
+    public PersonService(@Qualifier("dao") PersonDAO personDao){
         this.personDao = personDao;
     }
 
@@ -30,5 +30,13 @@ public class PersonService {
 
     public Optional<Person> getPersonById(UUID id){
         return personDao.selectPersonById(id);
+    }
+
+    public int deletePerson(UUID id){
+        return personDao.deletePersonById(id);
+    }
+
+    public int updatePerson(UUID id, Person person){
+        return personDao.updatePersonById(id,person);
     }
 }
